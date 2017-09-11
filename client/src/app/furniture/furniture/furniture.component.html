@@ -1,0 +1,22 @@
+<h1>Furniture</h1>
+<div>
+    <md-card>
+        <form>
+            <md-input-container>
+                <input type="text" [(ngModel)]="search" mdInput name="search" placeholder="Search for furniture..." (keyup)="searchFurniture(search)"
+                />
+            </md-input-container>
+        </form>
+    </md-card>
+</div>
+
+<h3 *ngIf="searchResults.length === 0 && search.length || furniture.length == 0">No furniture found.</h3>
+
+<fs-furniture-list [furniture]="furniture" *ngIf="search.length < 1"></fs-furniture-list>
+<fs-furniture-list [furniture]="searchResults" *ngIf="searchResults.length != 0 && search.length > 0"></fs-furniture-list>
+
+<div class="paginator">
+    <button md-raised-button (click)="previousPage()" [disabled]="!hasPreviousPage()">{{"<" | uppercase }}</button>
+    <button md-raised-button (click)="nextPage()" [disabled]="!hasNextPage()">{{">" | uppercase }}</button>
+</div>
+<div class="ak-space"></div>

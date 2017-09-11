@@ -1,0 +1,15 @@
+<md-card>
+  <md-card-header>
+    <md-card-title><h1>{{ furniturePiece.model }} </h1></md-card-title>
+    <md-card-subtitle>{{ furniturePiece.make }}</md-card-subtitle>
+  </md-card-header>
+  <img md-card-image src="{{ furniturePiece.image }}">
+  <md-card-content>
+    <h2>${{ furniturePiece.price }}</h2>
+    <p>
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="viewFurnitureDetails(furniturePiece.id)">{{"Details" | uppercase }}</button>
+  </md-card-actions>
+</md-card>

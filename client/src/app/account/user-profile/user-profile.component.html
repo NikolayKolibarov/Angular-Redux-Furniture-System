@@ -1,0 +1,24 @@
+<h1>User Profile</h1>
+<h2>Furniture</h2>
+<h3 *ngIf="furniture.length < 1">No furniture to be shown.</h3>
+<div *ngFor="let furniturePiece of furniture">
+
+    <md-card>
+        <md-card-header>
+            <md-card-title>{{ furniturePiece.model }}</md-card-title>
+            <md-card-subtitle>{{ furniturePiece.make }} </md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src="{{ furniturePiece.image }}">
+        <md-card-content>
+            <h4>${{ furniturePiece.price }}</h4>
+            <p>
+            </p>
+        </md-card-content>
+        <md-card-actions>
+            <a routerLink="/furniture/details/{{furniturePiece.id}}" md-button>{{"Details" | uppercase }}</a>
+            <button md-button (click)="remove(furniturePiece.id)">{{"Remove" | uppercase}}</button>
+        </md-card-actions>
+    </md-card>
+    <br>
+</div>
+<div class="fs-space"></div>

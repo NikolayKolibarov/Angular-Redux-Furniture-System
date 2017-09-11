@@ -1,0 +1,56 @@
+<div *ngIf="furniturePiece">
+    <h1>{{furniturePiece.make}} {{ furniturePiece.model }}</h1>
+    <md-card>
+        <md-card-header>
+            <md-card-title>{{ furniturePiece.model }}</md-card-title>
+            <md-card-subtitle>{{ furniturePiece.make }} </md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src="{{ furniturePiece.image }}">
+        <md-card-content>
+            <h3>${{ furniturePiece.price }}</h3>
+                <md-list>
+                    <md-list-item> Make - {{ furniturePiece.make }} </md-list-item>
+                    <md-list-item> Model - {{ furniturePiece.model }} </md-list-item>
+                    <md-list-item> Year: {{ furniturePiece.year }} </md-list-item>
+                    <md-list-item *ngIf="furniturePiece.material"> Material: {{ furniturePiece.material }} </md-list-item>
+                </md-list>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button (click)="addLike(furniturePiece.id)"><md-icon class="icon">thumb_up</md-icon> {{furniturePiece.likes}}</button>
+
+        </md-card-actions>
+        <md-card-footer>
+            <p>{{ furniturePiece.createdOn | date }}</p>
+        </md-card-footer>
+    </md-card>
+    <div class="fs-space"></div>
+    <h2>Add Review</h2>
+    <md-card>
+        <form>
+            <md-radio-group [(ngModel)]="rating" name="rating">
+                <p>Rating</p>
+                <md-radio-button [value]="1" selected>1</md-radio-button>
+                <md-radio-button [value]="2">2</md-radio-button>
+                <md-radio-button [value]="3">3</md-radio-button>
+                <md-radio-button [value]="4">4</md-radio-button>
+                <md-radio-button [value]="5">5</md-radio-button>
+            </md-radio-group>
+            <div class="cs-clearfix"></div>
+            <md-input-container>
+
+                <textarea [(ngModel)]="comment" mdInput name="comment" placeholder="Comment"></textarea>
+
+            </md-input-container>
+        </form>
+        <button md-raised-button (click)="addReview(furniturePiece.id, rating, comment)">Submit Review</button>
+
+    </md-card>
+    <div class="cs-clearfix"></div>
+    <h2>Reviews</h2>
+    <cs-review-list [reviews]="furniturePieceReviews" *ngIf="furniturePieceReviews.length > 0"></cs-review-list>
+    <p *ngIf="furniturePieceReviews.length === 0" class="no-reviews">There are no reviews for this furniture piece yet.</p>
+
+    <button md-raised-button (click)="back()">Back</button>
+
+    <div class="fs-space"></div>
+</div>
